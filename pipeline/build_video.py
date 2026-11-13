@@ -18,7 +18,9 @@ SPEC.json (paths relative to the spec file):
                "say": "Narration for this scene (do not say the card name)."} ],   # 3-7 scenes
   "tips": {"title": "Before you print", "items": ["...", "..."], "say": "..."},     # optional
   "say": {"title": "...free printable ...", "hook": "...", "end": "Download them all free at printamoo dot com."},
-  "end_sub": "Color & black-and-white versions"    # optional small line on the end screen
+  "end_sub": "Color & black-and-white versions",   # optional small line on the end screen
+  "thumb_title": "Free Gratitude Cards",           # optional thumbnail headline (default: headline), <= 24 chars
+  "thumb_badge": "FREE PRINTABLES"                  # optional badge text on the thumbnail
 }
 """
 import sys, os, json, math, subprocess, shutil, random, wave
@@ -30,6 +32,9 @@ W, H, FPS = 1080, 1920, 30
 LEAD, FADE = 0.5, 0.35
 INK, SOFT = (46, 26, 80), (104, 84, 140)
 ACC, MAG, BLUE, LAV = (91, 45, 145), (162, 62, 135), (63, 127, 216), (126, 87, 194)
+BLACK = (20, 18, 24)
+CTA_Y = H - 330          # search bar top; keeps it clear of YouTube Shorts' bottom overlay
+BOTTOM = CTA_Y - 70      # content must end above this
 SCENE_COLORS = [MAG, LAV, BLUE, ACC, MAG, BLUE, LAV]
 
 FONT_URLS = {
@@ -174,7 +179,7 @@ def overlay(keyword):
     q1, q2 = keyword + " ", "printamoo.com"
     qf = nunito(36, "ExtraBold")
     while qf.getlength(q1) + qf.getlength(q2) > W - 220: qf = nunito(qf.size - 2, "ExtraBold")
-    tw = qf.getlength(q1) + qf.getlength(q2); bw, bh = int(tw + 150), 78; bx, by = (W - bw) // 2, H - 150
+    tw = qf.getlength(q1) + qf.getlength(q2); bw, bh = int(tw + 150), 78; bx, by = (W - bw) // 2, CTA_Y
     sh = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     ImageDraw.Draw(sh).rounded_rectangle((bx, by + 8, bx + bw, by + bh + 8), bh // 2, fill=(60, 30, 110, 60))
     ov.alpha_composite(sh.filter(ImageFilter.GaussianBlur(12)))
@@ -184,7 +189,7 @@ def overlay(keyword):
     cx, cy = bx + 48, by + bh // 2 - 3
     d.ellipse((cx - 14, cy - 14, cx + 14, cy + 14), outline=MAG, width=5); d.line((cx + 10, cy + 10, cx + 22, cy + 22), fill=MAG, width=6)
     ty = by + (bh - qf.getbbox("Ag")[3]) // 2 - 2
-    d.text((bx + 86, ty), q1, font=qf, fill=INK); d.text((bx + 86 + qf.getlength(q1), ty), q2, font=qf, fill=MAG)
+    d.text((bx + 86, ty), q1, font=qf, fill=BLACK); d.text((bx + 86 + qf.getlength(q1), ty), q2, font=qf, fill=BLACK)
     return ov
 
 # ---------------- scenes ----------------
@@ -196,11 +201,11 @@ def title_scene(c, dur, vo):
     s = c.spec; bg = background(2)
     imgs = [c.img(x["image"]) for x in s["scenes"]][:3]
     while len(imgs) < 3: imgs.append(imgs[-1])
-    cards = [card(p, 440, a, max_h=640) for p, a in zip(imgs, (-8, 8, 0))]
     k1 = pill("FREE PRINTABLES", MAG)
     tf, tl = fit_text(s["headline"], 980, 124, "Bold", 2, 80); t1 = text_layer(tl, tf, ACC, 1.0)
     sf = fredoka(52, "Medium"); t2 = text_layer(wrap(s.get("tagline", ""), sf, 940) or [""], sf, MAG)
     ty2 = 420 + t1.height + 30; top = ty2 + t2.height + 60
+    cards = [card(p, 440, a, max_h=min(560, BOTTOM - top - 230)) for p, a in zip(imgs, (-8, 8, 0))]
     pos = [(W // 2 - 250 - cards[0].width // 2, top), (W // 2 + 250 - cards[1].width // 2, top + 20),
            (W // 2 - cards[2].width // 2, top + 100)]
     def frame(t):
@@ -237,7 +242,7 @@ def item_scene(c, idx, dur, vo):
     tf, tl = fit_text(sc["title"], 960, 70, "SemiBold", 2, 50); tlay = text_layer(tl, tf, INK, 1.12)
     cd = card(c.img(sc["image"]), 760, 1.6 if idx % 2 == 0 else -1.6)
     sh, base, rows = bullets_panel(sc["tips"], col)
-    title_y = 250; card_top = title_y + tlay.height + 30; panel_y = H - base.height - 250
+    title_y = 250; card_top = title_y + tlay.height + 30; panel_y = BOTTOM - base.height - 40
     avail = panel_y - card_top - 10; scale0 = min(1.0, (avail - 40) / (cd.height - 60), 1000 / cd.width)
     b0 = LEAD + 0.3; step = max(0.6, (vo - 0.3) / max(1, len(rows)))
     def frame(t):
@@ -261,7 +266,7 @@ def tips_scene(c, dur, vo):
     tf, tl = fit_text(tp.get("title", "Before you print"), 960, 76); tlay = text_layer(tl, tf, INK)
     sh, base, rows = bullets_panel(tp["items"], ACC)
     imgs = [c.img(x["image"]) for x in c.spec["scenes"]]
-    fan = [card(p, 360, g, max_h=480) for p, g in zip([imgs[min(1, len(imgs) - 1)], imgs[min(3, len(imgs) - 1)]], (-6, 5))]
+    fan = [card(p, 360, g, max_h=420) for p, g in zip([imgs[min(1, len(imgs) - 1)], imgs[min(3, len(imgs) - 1)]], (-6, 5))]
     py = 420 + tlay.height + 60; fy = py + base.height + 80
     b0 = LEAD + 0.2; step = max(0.6, (vo - 0.2) / max(1, len(rows)))
     def frame(t):
@@ -287,7 +292,8 @@ def end_scene(c, dur, vo):
               6: [(30, 700), (350, 680), (670, 710), (30, 1000), (350, 990), (670, 1010)],
               7: [(30, 700), (350, 680), (670, 710), (170, 950), (510, 940), (30, 1190), (670, 1180)]}
     pos = allpos[len(imgs)]
-    cs = [card(p, 270, a, max_h=360) for p, a in zip(imgs, angs)]
+    cs = [card(p, 250, a, max_h=330) for p, a in zip(imgs, angs)]
+    pos = [(x + 10, y - 40) for x, y in pos]
     t1 = text_layer(["Download them all free at"], fredoka(66), INK, 1.1)
     t2 = text_layer(["printamoo.com"], fredoka(100, "Bold"), MAG)
     t3 = text_layer([s.get("end_sub", "")] if s.get("end_sub") else [" "], fredoka(44, "Medium"), SOFT)
@@ -302,6 +308,44 @@ def end_scene(c, dur, vo):
         a = ease((t - 0.8) / 0.6); im.alpha_composite(fade(t3, a), ((W - t3.width) // 2, 560 + int(20 * (1 - a))))
         return im.convert("RGB")
     return frame, bg
+
+def thumbnail(c, path):
+    """Vertical 1080x1920 thumbnail: logo, FREE badge, big headline, fanned printables, URL banner."""
+    s = c.spec; im = background(5).convert("RGBA")
+    lg = logo(460); im.alpha_composite(lg, ((W - lg.width) // 2, 80))
+    bf = nunito(44, "ExtraBold"); bt = s.get("thumb_badge", "FREE PRINTABLES")
+    bw = int(bf.getlength(bt)) + 90; badge = Image.new("RGBA", (bw, 84), (0, 0, 0, 0)); bd = ImageDraw.Draw(badge)
+    bd.rounded_rectangle((0, 0, bw - 1, 83), 42, fill=MAG + (255,)); bd.text((45, 14), bt, font=bf, fill=(255, 255, 255))
+    by = 80 + lg.height + 40; im.alpha_composite(badge, ((W - bw) // 2, by))
+    head = s.get("thumb_title", s["headline"])
+    size = 170
+    while True:
+        f = fredoka(size, "Bold"); lines = wrap(head, f, 980)
+        if (len(lines) <= 2 and all(f.getlength(l) <= 980 for l in lines)) or size <= 90: break
+        size -= 6
+    asc, desc = f.getmetrics(); lh = int((asc + desc) * 0.98); ty = by + 84 + 30
+    d = ImageDraw.Draw(im)
+    for i, l in enumerate(lines):
+        d.text(((W - f.getlength(l)) / 2, ty + i * lh), l, font=f, fill=ACC, stroke_width=12, stroke_fill=(255, 255, 255))
+    top = ty + len(lines) * lh + 40
+    imgs = [c.img(x["image"]) for x in s["scenes"]][:3]
+    while len(imgs) < 3: imgs.append(imgs[-1])
+    avail = 1700 - top
+    imgs = [imgs[1], imgs[2], imgs[0]]   # first scene's printable sits in front
+    cards = [card(p, 520, a, max_h=int(avail * 0.82)) for p, a in zip(imgs, (-9, 9, 0))]
+    pos = [(W // 2 - 270 - cards[0].width // 2, top), (W // 2 + 270 - cards[1].width // 2, top + 20),
+           (W // 2 - cards[2].width // 2, top + 70)]
+    for cd, (x, y) in zip(cards, pos): im.alpha_composite(cd, (x, y))
+    uf = nunito(46, "ExtraBold"); ut = "Free at printamoo.com"
+    uw = int(uf.getlength(ut)) + 110; bx = (W - uw) // 2; by2 = 1745
+    sh = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    ImageDraw.Draw(sh).rounded_rectangle((bx, by2 + 8, bx + uw, by2 + 98), 48, fill=(60, 30, 110, 70))
+    im.alpha_composite(sh.filter(ImageFilter.GaussianBlur(12)))
+    d = ImageDraw.Draw(im)
+    d.rounded_rectangle((bx, by2, bx + uw, by2 + 92), 46, fill=(255, 255, 255, 255), outline=ACC + (255,), width=5)
+    d.text((bx + 55, by2 + 16), ut, font=uf, fill=BLACK)
+    im.convert("RGB").save(path, "JPEG", quality=88)
+    return path
 
 def plan(spec):
     """Ordered list of (kind, idx, narration)."""
@@ -449,10 +493,14 @@ def build(spec_path, outdir):
                     "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "44100", "-shortest",
                     "-movflags", "+faststart", tmp], check=True)
     os.replace(tmp, final)
-    print(json.dumps({"video": final, "seconds": round(total, 2), "bytes": os.path.getsize(final)}))
+    thumbnail(c, os.path.join(outdir, "thumbnail.jpg"))
+    print(json.dumps({"thumbnail": os.path.join(outdir, "thumbnail.jpg"), "video": final, "seconds": round(total, 2), "bytes": os.path.getsize(final)}))
 
 if __name__ == "__main__":
     cmd = sys.argv[1]
     if cmd == "setup": setup()
     elif cmd == "preview": setup(); preview(sys.argv[2], sys.argv[3])
     elif cmd == "build": setup(); build(sys.argv[2], sys.argv[3])
+    elif cmd == "thumb":
+        setup(); spec, c = load(sys.argv[2]); os.makedirs(sys.argv[3], exist_ok=True)
+        print(thumbnail(c, os.path.join(sys.argv[3], "thumbnail.jpg")))

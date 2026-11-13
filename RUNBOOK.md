@@ -46,13 +46,14 @@ Owner's rules for the script — follow all of them:
 ## 4. Build and check
 1. `python3 pipeline/build_video.py preview /tmp/post/spec.json /tmp/out` → Read `/tmp/out/preview.png` and check: nothing overlaps,
    text fits, images are the right printables. Fix the spec and re-preview if needed.
-2. `python3 pipeline/build_video.py build /tmp/post/spec.json /tmp/out` → `/tmp/out/video.mp4` (about 1 minute).
+2. `python3 pipeline/build_video.py build /tmp/post/spec.json /tmp/out` → `/tmp/out/video.mp4` and `/tmp/out/thumbnail.jpg` (about 1 minute).
+   Read `thumbnail.jpg` to check it (headline readable, printables visible). Optional spec keys: `thumb_title` (≤ 24 chars), `thumb_badge`.
 3. Check length is 30–75 s and the file is < 60 MB.
 
 ## 5. Put the video where YouTube can fetch it
 Force-push a one-commit `uploads` branch that holds only today's video (so the repo doesn't grow):
 ```
-rm -rf /tmp/up && mkdir -p /tmp/up/v && cp /tmp/out/video.mp4 /tmp/up/v/<slug>.mp4 && cd /tmp/up && git init -q && git checkout -q -b uploads \
+rm -rf /tmp/up && mkdir -p /tmp/up/v && cp /tmp/out/video.mp4 /tmp/up/v/<slug>.mp4 && cp /tmp/out/thumbnail.jpg /tmp/up/v/<slug>-thumb.jpg && cd /tmp/up && git init -q && git checkout -q -b uploads \
  && git add v && git -c user.email=bot@printamoo.com -c user.name="Printamoo Bot" commit -qm "upload <slug>" \
  && git remote add origin https://github.com/LewisTeee/printamoo-videos && git push -f origin uploads
 ```
@@ -93,6 +94,18 @@ d.querySelector('tp-yt-paper-radio-button[name="VIDEO_HAS_ALTERED_CONTENT_YES"]'
 const tag=d.querySelector('#tags-container input'); tag.focus(); tag.value='TAG1,TAG2,TAG3,printamoo,';
 tag.dispatchEvent(new Event('input',{bubbles:true})); tag.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',keyCode:13,bubbles:true}));
 ```
+5b. Thumbnail (needs the channel's one-time phone verification; if it doesn't take, carry on without it):
+```js
+const res = await fetch('https://raw.githubusercontent.com/LewisTeee/printamoo-videos/uploads/v/SLUG-thumb.jpg');
+const file = new File([await res.blob()], 'SLUG-thumb.jpg', {type:'image/jpeg'});
+const inp = document.querySelector('ytcp-uploads-dialog ytcp-thumbnail-uploader input#file-loader');
+const dt = new DataTransfer(); dt.items.add(file); inp.files = dt.files;
+inp.dispatchEvent(new Event('change', {bubbles:true, composed:true}));
+await new Promise(r=>setTimeout(r,5000));
+[...document.querySelectorAll('ytcp-uploads-dialog img')].map(i=>i.src.slice(0,40))   // a new googleusercontent/blob image = success
+```
+   Take a screenshot of the Thumbnail area to confirm. Record `thumbnail: true/false` in the ledger. If it failed because the channel
+   isn't verified, mention once in that day's notification: "Custom thumbnails need the channel's one-time phone verification at youtube.com/verify."
 6. Next ×3, Public, check, publish:
 ```js
 const d=document.querySelector('ytcp-uploads-dialog');

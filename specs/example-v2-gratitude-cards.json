@@ -1,0 +1,80 @@
+{
+ "keyword": "gratitude cards",
+ "headline": "Gratitude Cards",
+ "thumb_title": "Free Gratitude Cards",
+ "hook": {
+  "text": "Stop buying gratitude journals",
+  "sub": "7 free ways to use these instead",
+  "say": "Stop buying gratitude journals. These cards are free, and here are seven ways to use them. Stay for the last one."
+ },
+ "scenes": [
+  {
+   "image": "img/p3.png",
+   "title": "Family gratitude jar",
+   "focus": [
+    0.3,
+    0.2
+   ],
+   "say": "One. Turn any jar into a family gratitude jar, and read them together every Sunday."
+  },
+  {
+   "image": "img/p6.png",
+   "title": "Fall jar centerpiece",
+   "focus": [
+    0.3,
+    0.2
+   ],
+   "say": "Two. Mason jar, twine, a few real leaves. Instant fall centerpiece."
+  },
+  {
+   "image": "img/p5.png",
+   "title": "Pull-a-prompt bowl",
+   "focus": [
+    0.5,
+    0.15
+   ],
+   "say": "Three. Fold prompt slips into a bowl. Everyone pulls one and shares."
+  },
+  {
+   "image": "img/p1.png",
+   "title": "Thanksgiving place cards",
+   "focus": [
+    0.45,
+    0.2
+   ],
+   "say": "Four. One card on every plate at Thanksgiving. Read them out over pie.",
+   "zoom": 0.12
+  },
+  {
+   "image": "img/p2.png",
+   "title": "Gratitude garland",
+   "focus": [
+    0.5,
+    0.15
+   ],
+   "say": "Five. Clip them to twine for a garland that grows all month."
+  },
+  {
+   "image": "img/p7.png",
+   "title": "Journal reflections",
+   "focus": [
+    0.3,
+    0.2
+   ],
+   "say": "Six. Tuck reflection cards into a journal for a calm weekly reset."
+  },
+  {
+   "image": "img/p4.png",
+   "title": "Hard-day reframes",
+   "focus": [
+    0.3,
+    0.2
+   ],
+   "say": "And seven, my favorite. Reframe cards that turn a hard day around. Keep one in your bag."
+  }
+ ],
+ "end": {
+  "text": "All 7 are free",
+  "say": "They're all free. Search gratitude cards printamoo dot com."
+ }
+}

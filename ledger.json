@@ -9,7 +9,8 @@
    "youtube_url": "https://youtube.com/shorts/iIcLJHd8UWU",
    "seconds": 62.5,
    "scenes": 7,
-   "via": "manual first upload"
+   "via": "manual first upload",
+   "thumbnail": true
   }
  ],
  "runs": [
@@ -17,6 +18,11 @@
    "date": "2026-11-13",
    "time": "13:20",
    "result": "first Short published manually during setup"
+  },
+  {
+   "date": "2026-11-13",
+   "time": "13:38",
+   "result": "custom thumbnail added to gratitude Short after channel phone verification"
   }
  ]
 }

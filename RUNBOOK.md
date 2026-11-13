@@ -50,12 +50,7 @@ Owner's rules for the script — follow all of them:
 3. Check length is 30–75 s and the file is < 60 MB.
 
 ## 5. Put the video where YouTube can fetch it
-Push to the orphan `uploads` branch (replacing its previous content, so the repo doesn't grow):
-```
-cd <repo> && git fetch --depth 1 origin uploads || true
-git worktree add -f /tmp/up --orphan -b uploads-new 2>/dev/null || (mkdir -p /tmp/up && cd /tmp/up && git init -q)
-```
-Simplest reliable way:
+Force-push a one-commit `uploads` branch that holds only today's video (so the repo doesn't grow):
 ```
 rm -rf /tmp/up && mkdir -p /tmp/up/v && cp /tmp/out/video.mp4 /tmp/up/v/<slug>.mp4 && cd /tmp/up && git init -q && git checkout -q -b uploads \
  && git add v && git -c user.email=bot@printamoo.com -c user.name="Printamoo Bot" commit -qm "upload <slug>" \

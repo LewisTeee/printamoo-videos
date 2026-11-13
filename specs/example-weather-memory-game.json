@@ -1,0 +1,77 @@
+{
+ "keyword": "weather memory game",
+ "headline": "Weather Memory Game",
+ "tagline": "Flip, match & learn the weather",
+ "hook": {
+  "line1": "Print twice. Cut. Flip.",
+  "line2": "Weather words that stick.",
+  "tags": [
+   "Pre-K",
+   "Kindergarten",
+   "ESL",
+   "Centers"
+  ]
+ },
+ "scene_label": "HOW TO PLAY",
+ "scenes": [
+  {
+   "image": "img/03.jpg",
+   "title": "9 Big Seasonal Cards",
+   "tips": [
+    "Big cards for little hands",
+    "Start with just 9 pairs"
+   ],
+   "say": "Start small. Nine big cards are perfect for little hands and first-time matchers."
+  },
+  {
+   "image": "img/01.jpg",
+   "title": "12 Classic Weather Icons",
+   "tips": [
+    "A balanced set for centers",
+    "Name each card as you flip it"
+   ],
+   "say": "Ready for more? Twelve classic icons fit right into a preschool center."
+  },
+  {
+   "image": "img/06.jpg",
+   "title": "12 Forecast Word Cards",
+   "tips": [
+    "Say the word to keep the pair",
+    "Great for ESL speaking rounds"
+   ],
+   "say": "Add words to build vocabulary. Say it out loud to keep the pair."
+  },
+  {
+   "image": "img/04.jpg",
+   "title": "16-Card Sky & Seasons Mix",
+   "tips": [
+    "More pairs for fast finishers",
+    "Talk about each sky you find"
+   ],
+   "say": "Sixteen cards turn it into a real challenge for fast finishers."
+  },
+  {
+   "image": "img/02.jpg",
+   "title": "Blank DIY Cards",
+   "tips": [
+    "Kids draw their own weather",
+    "Label it, print twice, play"
+   ],
+   "say": "Or let kids draw their own weather, then print twice and play."
+  }
+ ],
+ "tips": {
+  "title": "Before you print",
+  "items": [
+   "Print each page twice to make pairs",
+   "Black-and-white versions save ink, or let kids color them"
+  ],
+  "say": "Print each page twice, and try the black and white versions to save ink."
+ },
+ "say": {
+  "title": "Free printable weather memory games that make weather words stick.",
+  "hook": "Print twice, cut, and start flipping.",
+  "end": "Download them all free at printamoo dot com."
+ },
+ "end_sub": "Color & black-and-white versions"
+}

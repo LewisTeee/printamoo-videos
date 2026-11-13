@@ -187,7 +187,7 @@ def hook_scene(spec, base, words_t, dur, nscenes):
     def frame(t):
         im = bg.copy().convert("RGBA")
         # cards drift + slow spin behind
-        for i, (cd, (x, y)) in enumerate(zip(cards, [(10, 850), (540, 870), (W // 2 - cards[2].width // 2, 910)])):
+        for i, (cd, (x, y)) in enumerate(zip(cards, [(10, 1040), (540, 1060), (W // 2 - cards[2].width // 2, 1110)])):
             a = ease((t - 0.05 * i) / 0.5)
             dx = int(14 * math.sin(t * 1.6 + i)); dy = int(160 * (1 - a)) + int(10 * math.cos(t * 1.3 + i))
             im.alpha_composite(fade(cd, a), (x + dx, y + dy))
@@ -216,7 +216,7 @@ def hook_scene(spec, base, words_t, dur, nscenes):
 
 def item_scene(spec, base, idx, words_t, dur, nscenes):
     sc = spec["scenes"][idx]; col = COLS[idx % len(COLS)]; bg = bv.background(7)
-    ww, wh = 880, 820; wy = 330
+    ww, wh = 900, 1000; wy = 330
     src = window(base(sc["image"]), ww, wh)
     fx, fy = sc.get("focus", [0.5, 0.38]); zmax = sc.get("zoom", 0.25)
     last = idx == nscenes - 1
@@ -225,7 +225,7 @@ def item_scene(spec, base, idx, words_t, dur, nscenes):
     title = sc["title"]
     while tf.getlength(title) > 800 and tf.size > 44: tf = fredoka(tf.size - 4, "SemiBold")
     badge_r = 52
-    capbox = (60, 1250, W - 60, 1470)
+    capbox = (60, 1440, W - 60, 1660)
     panel = caption_panel(capbox[1], capbox[3])
     star = None
     if last:
@@ -265,16 +265,16 @@ def item_scene(spec, base, idx, words_t, dur, nscenes):
 def end_scene(spec, base, words_t, dur, nscenes):
     e = spec["end"]; bg = bv.background(7)
     imgs = [base(x["image"]) for x in spec["scenes"]][:7]
-    n = len(imgs); cols = 4 if n > 4 else (n if n <= 3 else 2)
+    n = len(imgs); cols = {1: 1, 2: 2, 3: 3, 4: 2, 5: 3, 6: 3, 7: 4}[n]
     cw = {4: 230, 3: 280, 2: 330, 1: 380}[cols]
-    cs = [card(p, cw, a, max_h=330) for p, a in zip(imgs, [-6, 5, -3, 6, -5, 3, -2])]
+    cs = [card(p, cw, a, max_h=380) for p, a in zip(imgs, [-6, 5, -3, 6, -5, 3, -2])]
     pos = []
     for i, c in enumerate(cs):
         r, ci = divmod(i, cols); rowc = min(cols, n - r * cols)
         x = W / 2 + (ci - (rowc - 1) / 2) * {4: 245, 3: 310, 2: 390, 1: 0}[cols] - c.width / 2
-        pos.append((int(x), 430 + r * 330))
+        pos.append((int(x), 470 + r * 400))
     tf = fredoka(110, "Bold"); lines = wrap(e["text"], tf, 980)
-    capbox = (60, 1250, W - 60, 1470); panel = caption_panel(capbox[1], capbox[3])
+    capbox = (60, 1440, W - 60, 1660); panel = caption_panel(capbox[1], capbox[3])
     qf = nunito(36, "ExtraBold"); kw = spec["keyword"] + " "
     while qf.getlength(kw) + qf.getlength("printamoo.com") > W - 220: qf = nunito(qf.size - 2, "ExtraBold")
     bw = qf.getlength(kw) + qf.getlength("printamoo.com") + 150

@@ -23,9 +23,9 @@ organic YouTube Short per day, published publicly, made by this pipeline.
 - Prefer, in order: (a) a seasonal post for something coming up in the next ~6 weeks (plan ahead; skip holidays that have passed),
   (b) evergreen kids' activities (memory games, scavenger hunts, masks, crafts), (c) trackers/planners for adults.
   Don't pick the same topic family two days in a row (e.g. two memory games back to back).
-- Run `python3 pipeline/fetch_post.py <url> /tmp/post`. Need **at least 3 free printables with a real alt text**
+- Run `python3 pipeline/fetch_post.py <url> /tmp/post`. Need **at least 7 free printables with a real alt text**
   (skip alt text that is empty or ends in "featured image"). If not, pick another post.
-- Look at the images (open a contact sheet with Read) before choosing. Choose 4–6 of the most visually distinct free ones.
+- Look at the images (open a contact sheet with Read) before choosing. Choose the **7** most visually distinct free ones.
 
 ## 3. Write the spec (`/tmp/post/spec.json`)
 Format is documented at the top of `pipeline/build_video.py`. Use `specs/` in this repo as worked examples.
@@ -34,7 +34,8 @@ Owner's rules for the script — follow all of them:
 - Natural, warm, concise. No stating the obvious, no clunky step-by-step ("first you print, then you cut…").
   Each scene's narration is ONE useful idea for using that printable (how to style/use/play), 10–18 words.
 - Mention **free** in the opening line and in the end line. End line is always: "Download them all free at printamoo dot com."
-- Total length about 45–60 seconds: 4–6 scenes, optional printing-tips scene.
+- **Exactly 7 scenes** (owner rule 2026-11-14), in the same format as the first Short (gratitude cards, 2026-11-13, 7 scenes, 62.5 s):
+  v1 `build_video.py`, opening headline + hook, 7 printable scenes, printing-tips scene, end screen. Total about 60–65 seconds.
 - On-screen tips: exactly 2 per scene, ≤ 40 characters each, matching what the narration says.
 - `keyword` = the phrase people would search, usually the post's main topic in lowercase (e.g. "weather memory game").
   It renders as `<keyword> printamoo.com` in the bottom search bar.

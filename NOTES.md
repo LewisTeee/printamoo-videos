@@ -6,3 +6,4 @@
 - Search bar CTA moved up to H-330 (clear of the Shorts overlay); its text is black per owner.
 - 2026-11-14 OWNER RULE: use the v1 format only: pipeline/build_video.py with the RUNBOOK spec format (as in specs/example-weather-memory-game.json and specs/2026-11-14-thanksgiving-scavenger-hunt.json). pipeline/build_short.py (v2) was an owner experiment; do NOT use it. build_video.py restored to the 2026-11-13 version (CTA_Y = H-330).
 - Studio checks take ~1-2 min after upload; poll ytcp-video-upload-progress for "Checks complete" in short (<40 s) javascript_tool calls, as the tool times out at 45 s.
+- 2026-11-14 OWNER RULE: every Short has exactly 7 scenes, same format as the first Short (gratitude cards, iIcLJHd8UWU, 62.5 s): v1 build_video.py, 7 printable scenes + printing-tips scene. Only pick posts with >= 7 free printables.

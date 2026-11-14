@@ -1,0 +1,21 @@
+{
+  "keyword": "thanksgiving scavenger hunt",
+  "headline": "Thanksgiving Hunt",
+  "thumb_title": "Free Thanksgiving Hunts",
+  "hook": {"text": "Kids restless after turkey?",
+           "sub": "5 free hunts to fix that",
+           "say": "Kids restless after the turkey? These scavenger hunts are free, and here are five ways to use them. Stay for the last one."},
+  "scenes": [
+    {"image": "img/03.jpg", "title": "Toddler find & color", "focus": [0.5, 0.35],
+     "say": "One. Jumbo pictures for little ones. They spot the real thing, then color the square."},
+    {"image": "img/02.jpg", "title": "No-leaving-your-seat hunt", "focus": [0.5, 0.2],
+     "say": "Two. A table hunt for older kids and grown-ups. Spot every detail without leaving your seat."},
+    {"image": "img/12.jpg", "title": "After-dinner walk", "focus": [0.5, 0.2],
+     "say": "Three. Head outside after the meal and check off leaves, acorns and scarecrows on the way."},
+    {"image": "img/10.jpg", "title": "Camera roll challenge", "focus": [0.5, 0.2],
+     "say": "Four. Pass the page around and race to find a matching photo on your phone."},
+    {"image": "img/11.jpg", "title": "Riddle clue trail", "focus": [0.3, 0.25],
+     "say": "And five, my favorite. Hide eight riddle cards around the house, and each one leads to the next."}
+  ],
+  "end": {"text": "All free. Every one.", "say": "They're all free. Search Thanksgiving scavenger hunt printamoo dot com."}
+}

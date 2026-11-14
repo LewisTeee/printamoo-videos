@@ -33,8 +33,8 @@ LEAD, FADE = 0.5, 0.35
 INK, SOFT = (46, 26, 80), (104, 84, 140)
 ACC, MAG, BLUE, LAV = (91, 45, 145), (162, 62, 135), (63, 127, 216), (126, 87, 194)
 BLACK = (20, 18, 24)
-CTA_Y = H - 150          # search bar top (owner prefers it low; the Shorts progress bar only shows when paused)
-BOTTOM = CTA_Y - 70      # content must end above this (old builder)
+CTA_Y = H - 330          # search bar top; keeps it clear of YouTube Shorts' bottom overlay
+BOTTOM = CTA_Y - 70      # content must end above this
 SCENE_COLORS = [MAG, LAV, BLUE, ACC, MAG, BLUE, LAV]
 
 FONT_URLS = {

@@ -16,11 +16,11 @@
    "date": "2026-11-14",
    "post_url": "https://printamoo.com/thanksgiving-scavenger-hunt-printable/",
    "keyword": "thanksgiving scavenger hunt",
-   "title": "5 Free Thanksgiving Scavenger Hunts for Kids & Families 🦃 #shorts",
-   "youtube_url": "https://youtube.com/shorts/S9yoEYu7M5s",
-   "seconds": 40.6,
+   "title": "Free Printable Thanksgiving Scavenger Hunts + Easy Ways to Use Them 🦃 #shorts",
+   "youtube_url": "https://youtube.com/shorts/4lzdHBExKK4",
+   "seconds": 51.1,
    "scenes": 5,
-   "via": "v2 builder (build_short.py), run on request",
+   "via": "v1 builder (build_video.py), remade on owner request",
    "thumbnail": true
   }
  ],
@@ -39,6 +39,11 @@
    "date": "2026-11-14",
    "time": "09:25",
    "result": "published Thanksgiving scavenger hunt Short (owner asked to run early); checks: no issues"
+  },
+  {
+   "date": "2026-11-14",
+   "time": "09:45",
+   "result": "owner disliked v2-format Short (S9yoEYu7M5s); deleted it on owner's confirmation and published a v1-format remake (4lzdHBExKK4)"
   }
  ]
 }

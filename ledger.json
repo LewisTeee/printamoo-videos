@@ -22,6 +22,17 @@
    "scenes": 5,
    "via": "v1 builder (build_video.py), remade on owner request",
    "thumbnail": true
+  },
+  {
+   "date": "2026-11-15",
+   "post_url": "https://printamoo.com/thanksgiving-memory-game/",
+   "keyword": "thanksgiving memory game",
+   "title": "Free Printable Thanksgiving Memory Games + Easy Ways to Play 🦃 #shorts",
+   "youtube_url": "https://youtube.com/shorts/dv9YQzFahxA",
+   "seconds": 64.4,
+   "scenes": 7,
+   "via": "scheduled run, v1 builder",
+   "thumbnail": true
   }
  ],
  "runs": [
@@ -44,6 +55,11 @@
    "date": "2026-11-14",
    "time": "09:45",
    "result": "owner disliked v2-format Short (S9yoEYu7M5s); deleted it on owner's confirmation and published a v1-format remake (4lzdHBExKK4)"
+  },
+  {
+   "date": "2026-11-15",
+   "time": "10:40",
+   "result": "published Thanksgiving memory game Short; checks: no issues; thumbnail set"
   }
  ]
 }

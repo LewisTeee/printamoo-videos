@@ -33,6 +33,16 @@
    "scenes": 7,
    "via": "scheduled run, v1 builder",
    "thumbnail": true
+  },
+  {
+   "date": "2026-11-16",
+   "post_url": "https://printamoo.com/christmas-bucket-list-printable/",
+   "keyword": "christmas bucket list",
+   "title": "Free Printable Christmas Bucket Lists + Easy Ways to Use Them 🎄 #shorts",
+   "youtube_url": "https://youtube.com/shorts/4CHuEuaxnTM",
+   "seconds": 62.07,
+   "scenes": 7,
+   "thumbnail": true
   }
  ],
  "runs": [
@@ -60,6 +70,11 @@
    "date": "2026-11-15",
    "time": "10:40",
    "result": "published Thanksgiving memory game Short; checks: no issues; thumbnail set"
+  },
+  {
+   "date": "2026-11-16",
+   "time": "11:28",
+   "result": "published Christmas bucket list Short; checks: no issues; thumbnail set"
   }
  ]
 }

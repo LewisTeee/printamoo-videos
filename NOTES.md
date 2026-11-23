@@ -8,3 +8,4 @@
 - Studio checks take ~1-2 min after upload; poll ytcp-video-upload-progress for "Checks complete" in short (<40 s) javascript_tool calls, as the tool times out at 45 s.
 - 2026-11-14 OWNER RULE: every Short has exactly 7 scenes, same format as the first Short (gratitude cards, iIcLJHd8UWU, 62.5 s): v1 build_video.py, 7 printable scenes + printing-tips scene. Only pick posts with >= 7 free printables.
 - 2026-11-15: execCommand insertText returned false while the browser pane was unfocused (document.hasFocus() false). One real click into the title box (computer left_click) gave the page focus; after that the RUNBOOK setBox JS worked for both boxes.
+- 2026-11-23: setBox on the empty description box returned false (execCommand selectAll fails on an empty box); calling el.focus() + execCommand('insertText') alone worked.

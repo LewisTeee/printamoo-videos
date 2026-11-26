@@ -113,6 +113,16 @@
    "seconds": 61.43,
    "scenes": 7,
    "thumbnail": true
+  },
+  {
+   "date": "2026-11-26",
+   "post_url": "https://printamoo.com/printable-animal-masks/",
+   "keyword": "animal masks",
+   "title": "Free Printable Animal Masks + Easy Ways to Wear Them \ud83e\udd81 #shorts",
+   "youtube_url": "https://youtube.com/shorts/6ZiLxRJNiws",
+   "seconds": 64.83,
+   "scenes": 7,
+   "thumbnail": true
   }
  ],
  "runs": [
@@ -180,6 +190,11 @@
    "date": "2026-11-25",
    "time": "09:10",
    "result": "published gratitude dice game Short (late-fired run from 2026-11-24 18:23 slot; no Short on 11-24); checks: no issues; thumbnail set"
+  },
+  {
+   "date": "2026-11-26",
+   "time": "08:20",
+   "result": "published animal masks Short (late-fired run from 2026-11-25 18:23 slot; 11-25 already done); checks: no issues; thumbnail set"
   }
  ]
 }

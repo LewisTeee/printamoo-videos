@@ -133,6 +133,16 @@
    "seconds": 65.0,
    "scenes": 7,
    "thumbnail": true
+  },
+  {
+   "date": "2026-11-28",
+   "post_url": "https://printamoo.com/printable-christmas-countdown/",
+   "keyword": "christmas countdown",
+   "title": "Free Printable Christmas Countdowns + Easy Ways to Use Them 🎅 #shorts",
+   "youtube_url": "https://youtube.com/shorts/GKohcRJNso8",
+   "seconds": 63.97,
+   "scenes": 7,
+   "thumbnail": true
   }
  ],
  "runs": [
@@ -210,6 +220,11 @@
    "date": "2026-11-27",
    "time": "12:15",
    "result": "published Christmas photo booth props Short; checks: no issues; thumbnail set"
+  },
+  {
+   "date": "2026-11-28",
+   "time": "13:29",
+   "result": "published Christmas countdown Short; checks: no issues; thumbnail set"
   }
  ]
 }
